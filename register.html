@@ -1,0 +1,68 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+    <title>注册界面</title>
+    </head>
+
+
+<body>
+<div class="content" align="center">
+    <div class="header">
+        <h1>注册页面</h1>
+    </div>
+<div class="middle">
+  <form  name="form1"  method="post" action="add.php">
+
+
+      <table border="0">
+          <tr>
+              <td>用户名：</td>
+              <td>
+                  <input type="text" id="name" name="nickname" required="required"placeholder ="数字、字母、下划线"
+                  >
+              </td>
+          </tr>
+          <tr>
+              <td>密码：</td>
+              <td>
+        <input name="password" type="password" placeholder ="密码：至少6位"/>
+              </td>
+          </tr>
+          <tr>
+              <td>确认密码：</td>
+              <td>
+        <input name="confirm" type="password"  placeholder ="确认密码"/>
+              </td>
+          </tr>
+          <tr>
+              <td>邮箱：</td>
+              <td>
+        <input name="emailaddress" type="text"  placeholder ="常用邮箱"/>
+              </td>
+          </tr>
+          <tr>
+              <td>验证码</td>
+              <td><input name="verification"type="text"  placeholder ="验证码">
+                  <img name="validate" onclick="validate.src+='?' + Math.random();"
+                       src="verification.php"  alt="点击刷新"></td>
+          </tr>
+
+
+
+          <tr>
+              <td colspan="2" align="center">
+                  <input type="submit"  value="注册">
+                  <input type="reset"  value="重置">
+              </td>
+          </tr>
+
+      </table>
+  </form>
+</div>
+</div>
+</body>
+</html>
+

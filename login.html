@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <meta name="content-type"; charset=UTF-8">
+</head>
+<body>
+<div class="content" align="center">
+    <!--头部-->
+    <div class="header">
+        <h1>登录页面</h1>
+    </div>
+    <!--中部-->
+    <div class="middle">
+        <form id="loginform" action="login.php" method="post">
+            <table border="0">
+                <tr>
+                    <td>用户名：</td>
+                    <td>
+                        <input type="text" id="name" name="nickname" required="required"
+                               >
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input type="password" id="password" name="password">
+                    <label><input id="remember" type="checkbox">记住密码</label></td>
+                </tr>
+                <tr>
+                    <td>验证码</td>
+                    <td><input name="verification"type="text"  placeholder ="验证码">
+                    <img name="validate" onclick="validate.src+='?' + Math.random();"
+                         src="verification.php"  alt="点击刷新"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" id="login" name="login" value="登录">
+                        <input type="reset" id="reset" name="reset" value="重置">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        还没有账号，快去<a href="register.html">注册</a>吧！
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!--脚部-->
+    <div class="footer">
+        <small>Copyright &copy; 版权所有·欢迎翻版</small>
+    </div>
+</div>
+
+<script>
+    window.onload = function(){
+        var oForm = document.getElementById('loginform');
+        var oUser = document.getElementById('name');
+        var oPswd = document.getElementById('password');
+        var oRemember = document.getElementById('remember');
+        //页面初始化时，如果帐号密码cookie存在则填充
+        if(getCookie('name') && getCookie('password')){
+            oUser.value = getCookie('name');
+            oPswd.value = getCookie('password');
+            oRemember.checked = true;
+        }
+        //复选框勾选状态发生改变时，如果未勾选则清除cookie
+        oRemember.onchange = function(){
+            if(!this.checked){
+                delCookie('name');
+                delCookie('password');
+            }
+        };
+        //表单提交事件触发时，如果复选框是勾选状态则保存cookie
+        oForm.onsubmit = function(){
+            if(remember.checked){
+                setCookie('name',oUser.value,7); //保存帐号到cookie，有效期7天
+                setCookie('password',oPswd.value,7); //保存密码到cookie，有效期7天
+            }
+        };
+    };
+    //设置cookie
+    function setCookie(name,value,day){
+        var date = new Date();
+        date.setDate(date.getDate() + day);
+        document.cookie = name + '=' + value + ';expires='+ date;
+    };
+    //获取cookie
+    function getCookie(name){
+        var reg = RegExp(name+'=([^;]+)');
+        var arr = document.cookie.match(reg);
+        if(arr){
+            return arr[1];
+        }else{
+            return '';
+        }
+    };
+    //删除cookie
+    function delCookie(name){
+        setCookie(name,null,-1);
+    };
+</script>
+
+</body>
+</html>
